@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/bootstrap-web.iml" filepath="$PROJECT_DIR$/bootstrap-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bootstrap-web-api/bootstrap-web-api.iml" filepath="$PROJECT_DIR$/bootstrap-web-api/bootstrap-web-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bootstrap-web-db/bootstrap-web-db.iml" filepath="$PROJECT_DIR$/bootstrap-web-db/bootstrap-web-db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bootstrap-web-main/bootstrap-web-main.iml" filepath="$PROJECT_DIR$/bootstrap-web-main/bootstrap-web-main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bootstrap-web-service/bootstrap-web-service.iml" filepath="$PROJECT_DIR$/bootstrap-web-service/bootstrap-web-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bootstrap-web-tools/bootstrap-web-tools.iml" filepath="$PROJECT_DIR$/bootstrap-web-tools/bootstrap-web-tools.iml" />
+    </modules>
+  </component>
+</project>
