@@ -45,4 +45,13 @@ public class UserController {
 
     }
 
+    @RequestMapping("LogOut")
+    public String logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession httpSession = request.getSession();
+        String username = (String)httpSession.getAttribute("username");
+        logger.info("user[{}] logOut", username);
+        httpSession.invalidate();
+        return "login";
+    }
+
 }

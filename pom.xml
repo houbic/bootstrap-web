@@ -283,9 +283,9 @@
             </dependency>
             <!--freemarker 模板-->
             <dependency>
-                <groupId>org.freemarker_test</groupId>
-                <artifactId>freemarker_test</artifactId>
-                <version>2.3.19</version>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>2.3.16</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
