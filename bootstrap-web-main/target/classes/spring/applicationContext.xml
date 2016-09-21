@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+    <!-- 数据源配置 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:/config/env.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />-->
+
+
+    <import resource="classpath:/mybatis-source/base-dataSource.xml" />
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:/mybatis-source/base-mybatis-config.xml" />
+        <property name="dataSource" ref="base-dataSource" />
+        <!-- 自动扫描mapping.xml文件 -->
+        <property name="mapperLocations" value="classpath:/mybatis-xml/base-xml/*Mapper.xml"></property>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <property name="basePackage" value="com.bink.mapper.base" />
+    </bean>
+
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="com.bink" />
+
+    <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+    <context:component-scan base-package="com.bink">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+
+    <!--<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
+        <!--<property name="templateLoaderPath" value="WEB-INF/metronic/index/" />-->
+        <!--<property name="defaultEncoding" value="UTF-8" />-->
+    <!--</bean>-->
+    <!--&lt;!&ndash; freemarker视图解析器 &ndash;&gt;-->
+    <!--<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
+        <!--<property name="suffix" value=".html" />-->
+        <!--<property name="contentType" value="text/html;charset=UTF-8" />-->
+        <!--&lt;!&ndash; 此变量值为pageContext.request, 页面使用方法：rc.contextPath &ndash;&gt;-->
+        <!--<property name="requestContextAttribute" value="rc" />-->
+    <!--</bean>-->
+
+
+    <!-- Freemarker配置 -->
+    <!--<bean id="freemarkerConfig"-->
+          <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
+        <!--<property name="templateLoaderPath" value="/WEB-INF/metronic/index/" />-->
+        <!--<property name="freemarkerSettings">-->
+            <!--<props>-->
+                <!--<prop key="template_update_delay">0</prop>-->
+                <!--<prop key="default_encoding">UTF-8</prop>-->
+                <!--<prop key="number_format">0.##########</prop>-->
+                <!--<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>-->
+                <!--<prop key="classic_compatible">true</prop>-->
+                <!--<prop key="template_exception_handler">ignore</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; 生产环境 &ndash;&gt;-->
+    <!--<beans profile="production">-->
+        <!--<context:property-placeholder-->
+                <!--ignore-resource-not-found="true" location="classpath:/config/env.properties" />-->
+        <!--<import resource="classpath:/mybatis-source/base-dataSource.xml" />-->
+    <!--</beans>-->
+
+    <!--&lt;!&ndash; 测试环境 &ndash;&gt;-->
+    <!--<beans profile="test">-->
+        <!--<context:property-placeholder-->
+                <!--ignore-resource-not-found="true" location="classpath:/config/env.properties" />-->
+        <!--<import resource="classpath:/mybatis-source/base-dataSource.xml" />-->
+    <!--</beans>-->
+     <!--开发环境-->
+    <!--<beans profile="develop">-->
+        <!--<context:property-placeholder-->
+                <!--ignore-resource-not-found="true" location="classpath:/config/env.properties" />-->
+        <!--<import resource="classpath:/mybatis-source/base-dataSource.xml" />-->
+    <!--</beans>-->
+
+
+</beans>
